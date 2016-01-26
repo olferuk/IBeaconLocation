@@ -27,6 +27,9 @@ Library contains following classes:
 ```objc
 - (instancetype)initWithUUID:(NSUUID *)uuid identifier:(NSString *)identifier;
 - (instancetype)initWithUUIDString:(NSString *)uuidString identifier:(NSString *)identifier;
+
+@property (nonatomic, strong) Floor *floor;
+@property (nonatomic, strong) Processor *processor;
 ```
 
 After the initialization, the library creates nessesary CoreLocation files (`CLBeaconRegion`, `CLLocationManager`) and handles `CLLocationManager`'s delegate. Moreover, it creates `Floor` object, which stores beacon identifiers and coordinates; and creates `Processor` object, which takes responsibility for the calculation of user position with beacons stored in `Floor` and their accuracies. 
