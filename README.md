@@ -30,6 +30,14 @@ Library contains following classes:
 
 After the initialization, the library creates nessesary CoreLocation files (`CLBeaconRegion`, `CLLocationManager`) and handles `CLLocationManager`'s delegate. Moreover, it creates `Floor` object, which stores beacon identifiers and coordinates; and creates `Processor` object, which takes responsibility for the calculation of user position with beacons stored in `Floor` and their accuracies. 
 
+`BeaconLocation` has a delegate of type `BeaconLocationDelegate`, which should contain the following selector:
+
+```objc
+@protocol BeaconLocationDelegate <NSObject>
+- (void)onUpdateUserPosition:(CGPoint)position;
+@end
+```
+
 ### Floor
 
 `Floor` class contains following methods for adding, getting and removing beacons:
@@ -88,8 +96,8 @@ Now back to usage. You may choose any positive values you want, as the library p
 
 ```objc
 self.lib = [[BeaconLocation alloc] initWith...];
-[self.lib.processor setAlgorithmsAndTrusts:@{ @(AlgorithmTypeEPTA): @(5),
-                                              @(AlgorithmTypePowerCenter): @(10) // power center method is twice as important
+[self.lib.processor setAlgorithmsAndTrusts:@{ @(AlgorithmTypeEPTA): @(1),
+                                              @(AlgorithmTypePowerCenter): @(3) // power center type is 3 times more important
                                               }];
 ```
 
@@ -97,3 +105,57 @@ self.lib = [[BeaconLocation alloc] initWith...];
 
 ### Algorithms
 
+The `Algorithm` group contains different implementations of the trilateration algorithms.
+
+1. **EPTA** (Enhanced Positioning Trilateration Algorithm)
+   Implementation of the algorithm based on the research of Peter Brida and Juraj Machaj "A Novel Enhanced Positioning Trilateration Algorithm Implemented for Medical Implant In-Body Localization" which can be found [on this web-page](http://www.hindawi.com/journals/ijap/2013/819695/).
+
+2. **Power Center**
+   Implementation of the algorithm based on the research of V. Pierlot, M. Urbin-Choffray, and M. Van Droogenbroeck "A new three object triangulation algorithm based on the power center of three circles", which can be found [here](http://www.telecom.ulg.ac.be/publi/publications/pierlot/Pierlot2011ANewThreeObject/index.html).
+
+3. **Sphere Intersection**
+   The algorithm is based on the Wikipedia article devoted to [Trilateration](https://en.wikipedia.org/wiki/Trilateration) problem. 
+
+## Example
+
+So, let us write a simple example demonstrating the possible usage of the framework:
+
+```objc
+#import <BeaconLocation/BeaconLocation.h>
+@import CoreGraphics;
+// ...
+@property (nonatomic, strong) BeaconLocation *library;
+
+// ...
+
+@interface MyClass: NSObject <BeaconLocationDelegate>
+
+// ...
+
+- (void)init {
+  self = [super init];
+  if (self) {
+    //init
+    _library = [[BeaconLocation alloc] initWithUUIDString:@"12345678-1234-0000-4321-876543210000" 
+                                               identifier:@"My region"];
+    
+    //beacons
+    [_library.floor addBeaconWithMajor:0 minor:0 inPosition:CGPointMake(1, 2)];
+    [_library.floor addBeaconWithMajor:0 minor:1 inPosition:CGPointMake(2, 3)];
+    [_library.floor addBeaconWithMajor:0 minor:2 inPosition:CGPointMake(1, 3)];
+    
+    //method
+    [_library.processor setAlgorithm:AlgorithmTypeSphereIntersection];
+    
+    //delegate
+    _library.delegate = self;
+  }
+  return self;
+}
+
+- (void)onUpdateUserPostion:(CGPoint)position {
+  // do fancy stuff
+}
+```
+
+So that's it.
