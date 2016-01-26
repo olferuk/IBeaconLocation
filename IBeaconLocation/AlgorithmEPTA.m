@@ -7,11 +7,16 @@
 //
 
 #import "AlgorithmEPTA.h"
+#import "Utils.h"
+#import "Epta.h"
 
 @implementation AlgorithmEPTA
 
 -(CGPoint)locationWithBeacons:(NSArray<Beacon *> *)beacons {
-    return CGPointMake(2, 2);
+    double *result = calculateUserPositionEpta([Utils valuesFromBeaconArray:beacons withKeyPath:@"x"],
+                                               [Utils valuesFromBeaconArray:beacons withKeyPath:@"y"],
+                                               [Utils valuesFromBeaconArray:beacons withKeyPath:@"accuracy"]);
+    return CGPointMake(result[0], result[1]);
 }
 
 @end

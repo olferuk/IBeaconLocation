@@ -10,6 +10,7 @@
 
 @implementation Utils
 
+static const int size = 3;
 
 + (double)realDistanceFromBeaconRssi:(NSInteger)rssi defaultRssi:(NSInteger)defaultRssi {
     if (rssi == 0) {
@@ -22,6 +23,15 @@
     }
     
     return 0.89976 * pow(ratio, 7.7095) + 0.111;
+}
+
++ (double *)valuesFromBeaconArray:(NSArray<Beacon *> *)beacons withKeyPath:(NSString *)keyPath {
+    double *result = (double *)malloc(sizeof(double) * size);
+    for (size_t i = 0; i < size; ++i) {
+        Beacon *b = (Beacon *)beacons[i];
+        result[i] = [[b valueForKeyPath:keyPath] doubleValue];
+    }
+    return result;
 }
 
 

@@ -20,8 +20,14 @@
         _x = x;
         _y = y;
         _z = z;
+        
+        _accuracy = 0;
     }
     return self;
+}
+
+- (void)updateAccuracy:(double)accuracy {
+    self.accuracy = accuracy;
 }
 
 @end

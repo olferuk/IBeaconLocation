@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <BeaconLocationDelegate>
-
+@interface ViewController : UIViewController 
 
 @end
 

@@ -7,11 +7,15 @@
 //
 
 #import "AlgorithmSphereIntersection.h"
+#import "SphereIntersection.h"
+#import "Utils.h"
 
 @implementation AlgorithmSphereIntersection
 
 -(CGPoint)locationWithBeacons:(NSArray<Beacon *> *)beacons {
-    return CGPointMake(3, 3);
-}
+    double *result = calculateUserPositionSphereIntersection([Utils valuesFromBeaconArray:beacons withKeyPath:@"x"],
+                                                             [Utils valuesFromBeaconArray:beacons withKeyPath:@"y"],
+                                                             [Utils valuesFromBeaconArray:beacons withKeyPath:@"accuracy"]);
+    return CGPointMake(result[0], result[1]);}
 
 @end

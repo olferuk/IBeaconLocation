@@ -7,11 +7,15 @@
 //
 
 #import "AlgorithmPowerCenter.h"
+#import "PowerCenter.h"
+#import "Utils.h"
 
 @implementation AlgorithmPowerCenter
 
 - (CGPoint)locationWithBeacons:(NSArray<Beacon *> *)beacons {
-    return CGPointMake(1, 1);
-}
+    double *result = calculateUserPositionPowerCenter([Utils valuesFromBeaconArray:beacons withKeyPath:@"x"],
+                                                      [Utils valuesFromBeaconArray:beacons withKeyPath:@"y"],
+                                                      [Utils valuesFromBeaconArray:beacons withKeyPath:@"accuracy"]);
+    return CGPointMake(result[0], result[1]);}
 
 @end

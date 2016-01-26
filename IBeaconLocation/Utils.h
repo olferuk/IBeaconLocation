@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Beacon.h"
 
 @interface Utils : NSObject
+
++ (double *)valuesFromBeaconArray:(NSArray<Beacon *> *)beacons withKeyPath:(NSString *)keyPath;
 
 + (double)realDistanceFromBeaconRssi:(NSInteger)rssi defaultRssi:(NSInteger)defaultRssi;
 
