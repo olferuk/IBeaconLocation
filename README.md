@@ -117,6 +117,10 @@ The `Algorithm` group contains different implementations of the trilateration al
 3. **Sphere Intersection**
    The algorithm is based on the Wikipedia article devoted to [Trilateration](https://en.wikipedia.org/wiki/Trilateration) problem. 
 
+## Error handling
+
+To make development easier, the framework uses `NSAssert(...)` macros to validate input arguments.
+
 ## Example
 
 So, let us write a simple example demonstrating the possible usage of the framework:
