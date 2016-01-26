@@ -27,9 +27,14 @@ Library contains following classes:
     |  Utils
     |  Processor
     / Algorithms
-      |  AlgorithmPowerCenter
-      |  AlgorithmEPTA
-      |  AlgorithmSphereIntersection
+      /  Wrappers
+        |  AlgorithmPowerCenter
+        |  AlgorithmEPTA
+        |  AlgorithmSphereIntersection
+      / Implementations
+        | Epta
+        | PowerCenter
+        | SphereIntersection
 ```
 
 ### BeaconLocation
@@ -122,7 +127,7 @@ self.lib = [[BeaconLocation alloc] initWith...];
 
 ### Algorithms
 
-The `Algorithm` group contains different implementations of the trilateration algorithms.
+The `Algorithm/Implementations` group contains different implementations of the trilateration algorithms written in pure C.
 
 1. **EPTA** (Enhanced Positioning Trilateration Algorithm)
    Implementation of the algorithm based on the research of Peter Brida and Juraj Machaj "A Novel Enhanced Positioning Trilateration Algorithm Implemented for Medical Implant In-Body Localization" which can be found [on this web-page](http://www.hindawi.com/journals/ijap/2013/819695/).
@@ -132,6 +137,8 @@ The `Algorithm` group contains different implementations of the trilateration al
 
 3. **Sphere Intersection**
    The algorithm is based on the Wikipedia article devoted to [Trilateration](https://en.wikipedia.org/wiki/Trilateration) problem. 
+
+The `Algorithm/Wrappers` group contains Objective-C wrappers of C classes listed above.
 
 ## Error handling
 
