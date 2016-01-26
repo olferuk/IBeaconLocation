@@ -1,6 +1,7 @@
 # IBeaconLocation
 
 This is a project contains both library files and example to demostrate its usage.
+> P.s. Библиотечка будет оформлена как фреймворк позже, а Example project пустой пока :(
 
 ## Library overview
 
@@ -123,7 +124,9 @@ So, let us write a simple example demonstrating the possible usage of the framew
 ```objc
 #import <BeaconLocation/BeaconLocation.h>
 @import CoreGraphics;
+
 // ...
+
 @property (nonatomic, strong) BeaconLocation *library;
 
 // ...
