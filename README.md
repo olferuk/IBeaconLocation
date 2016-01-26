@@ -1,6 +1,6 @@
 # IBeaconLocation
 
-This is a project contains both library files and example to demostrate its usage.
+This is a project containing both library files and an example to demostrate its usage.
 > P.s. Библиотечка будет оформлена как фреймворк позже, а Example project пустой пока :(
 
 ## Library overview
@@ -32,7 +32,7 @@ Library contains following classes:
 @property (nonatomic, strong) Processor *processor;
 ```
 
-After the initialization, the library creates nessesary CoreLocation files (`CLBeaconRegion`, `CLLocationManager`) and handles `CLLocationManager`'s delegate. Moreover, it creates `Floor` object, which stores beacon identifiers and coordinates; and creates `Processor` object, which takes responsibility for the calculation of user position with beacons stored in `Floor` and their accuracies. 
+After the initialization, the library creates necessary CoreLocation files (`CLBeaconRegion`, `CLLocationManager`) and handles `CLLocationManager`'s delegate. Moreover, it creates `Floor` object, which stores beacon identifiers and coordinates; and creates `Processor` object, which takes responsibility for the calculation of user position with beacons stored in `Floor` and their accuracies. 
 
 `BeaconLocation` has a delegate of type `BeaconLocationDelegate`, which should contain the following selector:
 
@@ -80,9 +80,9 @@ We assume that you provide coordinates in meters, as the CoreLocation framework 
 
 `Processor` is the core of the library. By default, it subscribes to `-locationManager:didRangeBeacons:inRegion` event, and calcutates user position with every call.
 
-As declared in `BeaconLocation.h`, the framework offers you 3 different algorithms to choose from, and also you can specify your own method with `customAlgorithm` property stored in `Processor`. 
+As declared in `BeaconLocation.h`, the framework offers you 3 different algorithms to choose from, and you can also specify your own method with `customAlgorithm` property stored in `Processor`. 
 
-Every algorithm or even the combination of algorithms can be chosen to achieve the best results. Consider the following interface:
+Each algorithm or even the combination of algorithms can be chosen to achieve the best results. Consider the following interface:
 
 ```objc
 - (void)setAlgorithm:(AlgorithmType)algorithmType;
