@@ -100,8 +100,9 @@ Now back to usage. You may choose any positive values you want, as the library p
 
 ```objc
 self.lib = [[BeaconLocation alloc] initWith...];
-[self.lib.processor setAlgorithmsAndTrusts:@{ @(AlgorithmTypeEPTA): @(1),
-                                              @(AlgorithmTypePowerCenter): @(3) // power center type is 3 times more important
+// power center type is 3 times more important:
+[self.lib.processor setAlgorithmsAndTrusts:@{ @(AlgorithmTypeEPTA): @(1),       // will be 0.25
+                                              @(AlgorithmTypePowerCenter): @(3) // will be 0.75
                                               }];
 ```
 
