@@ -1,7 +1,19 @@
 # IBeaconLocation
 
-This is a project contains both library files and example to demostrate its usage.
+This is a project containing both library files and an example to demostrate its usage.
 > P.s. Библиотечка будет оформлена как фреймворк позже, а Example project пустой пока :(
+
+## List of contents
+
+* [Library overview](#library-overview)
+  * [BeaconLocation](#beaconLocation)
+  * [Floor](#floor)
+  * [Beacon](#beacon)
+  * [Processor](#processor)
+  * [Algorithms](#algorithms)
+* [Error handling](#error-handling)
+* [Example](#example)
+
 
 ## Library overview
 
@@ -15,9 +27,14 @@ Library contains following classes:
     |  Utils
     |  Processor
     / Algorithms
-      |  AlgorithmPowerCenter
-      |  AlgorithmEPTA
-      |  AlgorithmSphereIntersection
+      / Wrappers
+        |  AlgorithmPowerCenter
+        |  AlgorithmEPTA
+        |  AlgorithmSphereIntersection
+      / Implementations
+        |  Epta
+        |  PowerCenter
+        |  SphereIntersection
 ```
 
 ### BeaconLocation
@@ -27,9 +44,12 @@ Library contains following classes:
 ```objc
 - (instancetype)initWithUUID:(NSUUID *)uuid identifier:(NSString *)identifier;
 - (instancetype)initWithUUIDString:(NSString *)uuidString identifier:(NSString *)identifier;
+
+@property (nonatomic, strong) Floor *floor;
+@property (nonatomic, strong) Processor *processor;
 ```
 
-After the initialization, the library creates nessesary CoreLocation files (`CLBeaconRegion`, `CLLocationManager`) and handles `CLLocationManager`'s delegate. Moreover, it creates `Floor` object, which stores beacon identifiers and coordinates; and creates `Processor` object, which takes responsibility for the calculation of user position with beacons stored in `Floor` and their accuracies. 
+After the initialization, the library creates necessary CoreLocation files (`CLBeaconRegion`, `CLLocationManager`) and handles `CLLocationManager`'s delegate. Moreover, it creates `Floor` object, which stores beacon identifiers and coordinates; and creates `Processor` object, which takes responsibility for the calculation of user position with beacons stored in `Floor` and their accuracies. 
 
 `BeaconLocation` has a delegate of type `BeaconLocationDelegate`, which should contain the following selector:
 
@@ -77,9 +97,9 @@ We assume that you provide coordinates in meters, as the CoreLocation framework 
 
 `Processor` is the core of the library. By default, it subscribes to `-locationManager:didRangeBeacons:inRegion` event, and calcutates user position with every call.
 
-As declared in `BeaconLocation.h`, the framework offers you 3 different algorithms to choose from, and also you can specify your own method with `customAlgorithm` property stored in `Processor`. 
+As declared in `BeaconLocation.h`, the framework offers you 3 different algorithms to choose from, and you can also specify your own method with `customAlgorithm` property stored in `Processor`. 
 
-Every algorithm or even the combination of algorithms can be chosen to achieve the best results. Consider the following interface:
+Each algorithm or even the combination of algorithms can be chosen to achieve the best results. Consider the following interface:
 
 ```objc
 - (void)setAlgorithm:(AlgorithmType)algorithmType;
@@ -97,8 +117,9 @@ Now back to usage. You may choose any positive values you want, as the library p
 
 ```objc
 self.lib = [[BeaconLocation alloc] initWith...];
-[self.lib.processor setAlgorithmsAndTrusts:@{ @(AlgorithmTypeEPTA): @(1),
-                                              @(AlgorithmTypePowerCenter): @(3) // power center type is 3 times more important
+// power center type is 3 times more important:
+[self.lib.processor setAlgorithmsAndTrusts:@{ @(AlgorithmTypeEPTA): @(1),       // will be 0.25
+                                              @(AlgorithmTypePowerCenter): @(3) // will be 0.75
                                               }];
 ```
 
@@ -106,7 +127,7 @@ self.lib = [[BeaconLocation alloc] initWith...];
 
 ### Algorithms
 
-The `Algorithm` group contains different implementations of the trilateration algorithms.
+The `Algorithm/Implementations` group contains different implementations of the trilateration algorithms written in pure C.
 
 1. **EPTA** (Enhanced Positioning Trilateration Algorithm)
    Implementation of the algorithm based on the research of Peter Brida and Juraj Machaj "A Novel Enhanced Positioning Trilateration Algorithm Implemented for Medical Implant In-Body Localization" which can be found [on this web-page](http://www.hindawi.com/journals/ijap/2013/819695/).
@@ -116,6 +137,12 @@ The `Algorithm` group contains different implementations of the trilateration al
 
 3. **Sphere Intersection**
    The algorithm is based on the Wikipedia article devoted to [Trilateration](https://en.wikipedia.org/wiki/Trilateration) problem. 
+
+The `Algorithm/Wrappers` group contains Objective-C wrappers of C classes listed above.
+
+## Error handling
+
+To make development easier, the framework uses `NSAssert(...)` macros to validate input arguments.
 
 ## Example
 
