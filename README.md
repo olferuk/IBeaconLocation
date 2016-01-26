@@ -3,6 +3,18 @@
 This is a project containing both library files and an example to demostrate its usage.
 > P.s. Библиотечка будет оформлена как фреймворк позже, а Example project пустой пока :(
 
+## List of contents
+
+* [Library overview](#Library-overview)
+  * [BeaconLocation](#BeaconLocation)
+  * [Floor](#Floor)
+  * [Beacon](#Beacon)
+  * [Processor](#Processor)
+  * [Algorithms](#Algorithms)
+* [Error handling](#Error-handling)
+* [Example](#Example)
+
+
 ## Library overview
 
 Library contains following classes:
