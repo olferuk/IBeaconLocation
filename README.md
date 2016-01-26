@@ -5,14 +5,14 @@ This is a project containing both library files and an example to demostrate its
 
 ## List of contents
 
-* [Library overview](#Library-overview)
-  * [BeaconLocation](#BeaconLocation)
-  * [Floor](#Floor)
-  * [Beacon](#Beacon)
-  * [Processor](#Processor)
-  * [Algorithms](#Algorithms)
-* [Error handling](#Error-handling)
-* [Example](#Example)
+* [Library overview](#library-overview)
+  * [BeaconLocation](#beaconLocation)
+  * [Floor](#floor)
+  * [Beacon](#beacon)
+  * [Processor](#processor)
+  * [Algorithms](#algorithms)
+* [Error handling](#error-handling)
+* [Example](#example)
 
 
 ## Library overview
