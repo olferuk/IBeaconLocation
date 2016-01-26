@@ -27,14 +27,14 @@ Library contains following classes:
     |  Utils
     |  Processor
     / Algorithms
-      /  Wrappers
+      / Wrappers
         |  AlgorithmPowerCenter
         |  AlgorithmEPTA
         |  AlgorithmSphereIntersection
       / Implementations
-        | Epta
-        | PowerCenter
-        | SphereIntersection
+        |  Epta
+        |  PowerCenter
+        |  SphereIntersection
 ```
 
 ### BeaconLocation
