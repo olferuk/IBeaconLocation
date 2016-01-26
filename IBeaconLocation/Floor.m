@@ -45,19 +45,37 @@
     [self.localBeacons addObject:[[Beacon alloc] initWithMajor:major minor:minor x:x y:y z:z]];
 }
 
-- (BOOL)hasBeaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor {
-    for (Beacon *b in self.beacons) {
-        if (b.major == major && b.minor == minor) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 #pragma mark - Getting beacons
 
 -(NSArray *)beacons {
     return self.localBeacons;
+}
+
+- (Beacon *)beaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor {
+    for (Beacon *b in self.beacons) {
+        if (b.major == major && b.minor == minor) {
+            return b;
+        }
+    }
+    return nil;
+}
+
+- (BOOL)hasBeaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor {
+    return !![self beaconWithMajor:major minor:minor];
+}
+
+#pragma mark - Removing beacons
+
+- (void)removeAllBeacons {
+    [self.localBeacons removeAllObjects];
+}
+
+- (void)removeBeaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor {
+    Beacon *b = [self beaconWithMajor:major minor:minor];
+    if (!b) {
+        return;
+    }
+    [self.localBeacons removeObject:b];
 }
 
 @end

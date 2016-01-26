@@ -26,15 +26,19 @@ static const int AlgorithmTypeCount = 3;
 static const float Eps = 1e-5;
 
 @protocol TrilaterationAlgorithm <NSObject>
-
 - (CGPoint)locationWithBeacons:(NSArray<Beacon *> *)beacons;
+@end
 
+@protocol BeaconLocationDelegate <NSObject>
+- (void)onUpdateUserPosition:(CGPoint)position;
 @end
 
 @interface BeaconLocation : NSObject <CLLocationManagerDelegate>
 
 - (instancetype)initWithUUID:(NSUUID *)uuid identifier:(NSString *)identifier;
 - (instancetype)initWithUUIDString:(NSString *)uuidString identifier:(NSString *)identifier;
+
+@property (nonatomic, weak) id<BeaconLocationDelegate> delegate;
 
 @property (nonatomic, strong) Floor *floor;
 @property (nonatomic, strong) Processor *processor;

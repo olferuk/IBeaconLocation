@@ -20,4 +20,10 @@
 
 - (void)addBeaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor inPosition:(CGPoint)point;
 
+- (BOOL)hasBeaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor;
+- (Beacon *)beaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor;
+
+- (void)removeAllBeacons;
+- (void)removeBeaconWithMajor:(NSUInteger)major minor:(NSUInteger)minor;
+
 @end
