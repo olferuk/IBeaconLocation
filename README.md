@@ -3,7 +3,7 @@
 This is a project containing both library files and an example to demostrate its usage.
 > P.s. Библиотечка будет оформлена как фреймворк позже, а Example project пустой пока :(
 
-## List of contents
+## Table of contents
 
 * [Library overview](#library-overview)
   * [BeaconLocation](#beaconLocation)
@@ -106,10 +106,10 @@ Each algorithm or even the combination of algorithms can be chosen to achieve th
 - (void)setAlgorithmsAndTrusts:(NSDictionary<NSNumber *, NSNumber *> *)algorithms;
 ```
 
-The first method enables only one algorithm type: `AlgorithmTypeEPTA`, `AlgorithmTypePowerCenter`, `AlgorithmTypeSphereIntersection`, and `AlgorithmTypeCustom` (which are declared in `AlgorithmType` enum in `BeaconLocation.h`). 
-> **Pay attention**: you must provide a `customAlgorithm` instance _before_ calling any of `-setAlgorithm:...` methods!
+The **first** method enables only one algorithm type: `AlgorithmTypeEPTA`, `AlgorithmTypePowerCenter`, `AlgorithmTypeSphereIntersection`, and `AlgorithmTypeCustom` (which are declared in `AlgorithmType` enum in `BeaconLocation.h`). 
+> **Pay attention**: you must provide a `customAlgorithm` instance _before_ setting custom algorithm usage with any of the `-setAlgorithm:...` methods!
 
-The second one is more tricky. `NSDictionary` that takes the method as the input argument should contain pair with `AlgorithmType` (boxed in a `NSNumber *` object) and the value called _trust_ (also a `NSNumber *`). _Trusts_ assigned to different algorithms show the importance of the result calculated with each of the enabled algorithm.
+The **second** one is more tricky. `NSDictionary` that takes the method as the input argument should contain pair with `AlgorithmType` (boxed in a `NSNumber *` object) and the value called _trust_ (also a `NSNumber *`). _Trusts_ assigned to different algorithms show the importance of the result calculated with each of the enabled algorithm.
 
 Let us say we have algorithm (1) and (2). The first one calculates user position to be `(1;1)`, while the second one suggests `(5;5)`. Then if _trusts_ are equal, the result will be averaged, and we will have `(3;3)`. If the second algorithm is twice as important as the first, we will have `0.66 * (5;5) + 0.33 * (1;1) == (3.66; 3.66)`.
 
@@ -129,13 +129,13 @@ self.lib = [[BeaconLocation alloc] initWith...];
 
 The `Algorithm/Implementations` group contains different implementations of the trilateration algorithms written in pure C.
 
-1. **EPTA** (Enhanced Positioning Trilateration Algorithm)
+1. **EPTA** (Enhanced Positioning Trilateration Algorithm).
    Implementation of the algorithm based on the research of Peter Brida and Juraj Machaj "A Novel Enhanced Positioning Trilateration Algorithm Implemented for Medical Implant In-Body Localization" which can be found [on this web-page](http://www.hindawi.com/journals/ijap/2013/819695/).
 
-2. **Power Center**
+2. **Power Center**.
    Implementation of the algorithm based on the research of V. Pierlot, M. Urbin-Choffray, and M. Van Droogenbroeck "A new three object triangulation algorithm based on the power center of three circles", which can be found [here](http://www.telecom.ulg.ac.be/publi/publications/pierlot/Pierlot2011ANewThreeObject/index.html).
 
-3. **Sphere Intersection**
+3. **Sphere Intersection**.
    The algorithm is based on the Wikipedia article devoted to [Trilateration](https://en.wikipedia.org/wiki/Trilateration) problem. 
 
 The `Algorithm/Wrappers` group contains Objective-C wrappers of C classes listed above.
