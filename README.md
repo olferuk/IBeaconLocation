@@ -90,8 +90,13 @@ We assume that you provide coordinates in meters, as the CoreLocation framework 
 @property (nonatomic, assign) double y;
 @property (nonatomic, assign) double z;
 
+@property (nonatomic, assign) double accuracy;
+
 - (instancetype)initWithMajor:(NSUInteger)major minor:(NSUInteger)minor x:(double)x y:(double)y z:(double)z;
+- (void)updateAccuracy:(double)accuracy;
 ```
+
+You don't need to update accuracy yourself, the library takes this responsibility.
 
 ### Processor
 
