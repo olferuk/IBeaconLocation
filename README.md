@@ -6,7 +6,7 @@ This is a project containing both library files and an example to demostrate its
 ## Table of contents
 
 * [Library overview](#library-overview)
-  * [BeaconLocation](#beaconLocation)
+  * [BeaconLocation](#beaconlocation)
   * [Floor](#floor)
   * [Beacon](#beacon)
   * [Processor](#processor)
@@ -109,6 +109,7 @@ Each algorithm or even the combination of algorithms can be chosen to achieve th
 ```objc
 - (void)setAlgorithm:(AlgorithmType)algorithmType;
 - (void)setAlgorithmsAndTrusts:(NSDictionary<NSNumber *, NSNumber *> *)algorithms;
+- (void)setAlgorithms:(NSArray<NSNumber *> *)algorithmTypes;
 ```
 
 The **first** method enables only one algorithm type: `AlgorithmTypeEPTA`, `AlgorithmTypePowerCenter`, `AlgorithmTypeSphereIntersection`, and `AlgorithmTypeCustom` (which are declared in `AlgorithmType` enum in `BeaconLocation.h`). 
@@ -129,6 +130,8 @@ self.lib = [[BeaconLocation alloc] initWith...];
 ```
 
 > **Note**: if all trusts were assigned to zero, it will be treated as even values.
+
+The **third** one allows you to pick several methods at once; all of them will be used with equal trusts.
 
 ### Algorithms
 
