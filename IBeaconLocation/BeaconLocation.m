@@ -49,9 +49,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray<CLBeacon *> *)beacons inRegion:(CLBeaconRegion *)region {
     // TODO: shit.
-    for (CLBeacon *beacon in beacons) {
-        NSLog(@"Accuracy: %.2f\tCalc: %.2f\tRSSI: %li", beacon.accuracy, [Utils realDistanceFromBeaconRssi:beacon.rssi defaultRssi:60], (long)beacon.rssi);
-    }
+//    for (CLBeacon *beacon in beacons) {
+//        NSLog(@"Accuracy: %.2f\tCalc: %.2f\tRSSI: %li", beacon.accuracy, [Utils realDistanceFromBeaconRssi:beacon.rssi defaultRssi:60], (long)beacon.rssi);
+//    }
 }
 
 @end

@@ -21,8 +21,10 @@
 		C254C4471C53A904004466FC /* Floor.m in Sources */ = {isa = PBXBuildFile; fileRef = C254C4461C53A904004466FC /* Floor.m */; };
 		C254C44A1C53AAED004466FC /* Beacon.m in Sources */ = {isa = PBXBuildFile; fileRef = C254C4491C53AAED004466FC /* Beacon.m */; };
 		C254C44D1C53ADDF004466FC /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = C254C44C1C53ADDF004466FC /* Utils.m */; };
+		C2609CE91C5E28B8001C6935 /* ProcessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2609CE81C5E28B8001C6935 /* ProcessorTests.m */; };
+		C2609CEC1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m in Sources */ = {isa = PBXBuildFile; fileRef = C2609CEB1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m */; };
 		C27212D01C56239500ED9A07 /* AlgorithmSphereIntersection.m in Sources */ = {isa = PBXBuildFile; fileRef = C27212CF1C56239500ED9A07 /* AlgorithmSphereIntersection.m */; };
-		C27213051C56608700ED9A07 /* IBeaconLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C27213041C56608700ED9A07 /* IBeaconLocationTests.m */; };
+		C27213051C56608700ED9A07 /* FloorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C27213041C56608700ED9A07 /* FloorTests.m */; };
 		C2C4B4691C53BB26003BD094 /* Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C4B4681C53BB26003BD094 /* Processor.m */; };
 		C2C4B46C1C53C701003BD094 /* AlgorithmPowerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C4B46B1C53C701003BD094 /* AlgorithmPowerCenter.m */; };
 		C2C4B46F1C53CF4C003BD094 /* AlgorithmEPTA.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C4B46E1C53CF4C003BD094 /* AlgorithmEPTA.m */; };
@@ -64,10 +66,13 @@
 		C254C4491C53AAED004466FC /* Beacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beacon.m; sourceTree = "<group>"; };
 		C254C44B1C53ADDF004466FC /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		C254C44C1C53ADDF004466FC /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		C2609CE81C5E28B8001C6935 /* ProcessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessorTests.m; sourceTree = "<group>"; };
+		C2609CEA1C5E2CD7001C6935 /* CustomTrilaterationImplementor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTrilaterationImplementor.h; sourceTree = "<group>"; };
+		C2609CEB1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTrilaterationImplementor.m; sourceTree = "<group>"; };
 		C27212CE1C56239500ED9A07 /* AlgorithmSphereIntersection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmSphereIntersection.h; sourceTree = "<group>"; };
 		C27212CF1C56239500ED9A07 /* AlgorithmSphereIntersection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlgorithmSphereIntersection.m; sourceTree = "<group>"; };
 		C27213021C56608700ED9A07 /* IBeaconLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IBeaconLocationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C27213041C56608700ED9A07 /* IBeaconLocationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IBeaconLocationTests.m; sourceTree = "<group>"; };
+		C27213041C56608700ED9A07 /* FloorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloorTests.m; sourceTree = "<group>"; };
 		C27213061C56608800ED9A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2C4B4671C53BB26003BD094 /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
 		C2C4B4681C53BB26003BD094 /* Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Processor.m; sourceTree = "<group>"; };
@@ -203,8 +208,11 @@
 		C27213031C56608700ED9A07 /* IBeaconLocationTests */ = {
 			isa = PBXGroup;
 			children = (
-				C27213041C56608700ED9A07 /* IBeaconLocationTests.m */,
+				C27213041C56608700ED9A07 /* FloorTests.m */,
+				C2609CE81C5E28B8001C6935 /* ProcessorTests.m */,
 				C27213061C56608800ED9A07 /* Info.plist */,
+				C2609CEA1C5E2CD7001C6935 /* CustomTrilaterationImplementor.h */,
+				C2609CEB1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m */,
 			);
 			path = IBeaconLocationTests;
 			sourceTree = "<group>";
@@ -347,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C27213051C56608700ED9A07 /* IBeaconLocationTests.m in Sources */,
+				C2609CEC1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m in Sources */,
+				C2609CE91C5E28B8001C6935 /* ProcessorTests.m in Sources */,
+				C27213051C56608700ED9A07 /* FloorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

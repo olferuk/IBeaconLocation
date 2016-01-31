@@ -18,7 +18,11 @@
 @property (nonatomic, weak) Floor *floor;
 
 - (void)setAlgorithm:(AlgorithmType)algorithmType;
+- (void)setAlgorithms:(NSArray<NSNumber *> *)algorithmTypes;
 - (void)setAlgorithmsAndTrusts:(NSDictionary<NSNumber *, NSNumber *> *)algorithms;
+
+- (NSMutableDictionary<NSNumber *, NSNumber *> *)algorithmTrusts;
+- (NSMutableArray<id<TrilaterationAlgorithm>> *)algorithmImplements;
 
 - (CGPoint)calculateUserPosition;
 

@@ -10,12 +10,13 @@
 
 #import "AlgorithmPowerCenter.h"
 #import "AlgorithmEPTA.h"
+#import "AlgorithmSphereIntersection.h"
 
 @import UIKit;
 
 @interface Processor ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *algorithms;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *algorithmTrusts;
 @property (nonatomic, strong) NSMutableArray< id<TrilaterationAlgorithm> > *algorithmImplements;
 
 @end
@@ -30,19 +31,38 @@
     self = [super init];
     if (self) {
         _customAlgorithm = nil;
-        _algorithms = [NSMutableDictionary dictionaryWithDictionary:@{ @(AlgorithmTypePowerCenter): @(1) }];
+        _algorithmTrusts = [NSMutableDictionary dictionaryWithDictionary:@{ @(AlgorithmTypePowerCenter): @(1) }];
+        _algorithmImplements = [NSMutableArray array];
         [self createAlgorithmsIfNeeded];
     }
     return self;
 }
 
+#pragma mark - Getters
+
+- (NSMutableDictionary<NSNumber *, NSNumber *> *)algorithmTrusts {
+    return _algorithmTrusts;
+}
+
+- (NSMutableArray< id<TrilaterationAlgorithm> > *)algorithmImplements {
+    return _algorithmImplements;
+}
+
+#pragma mark - Algorithm choosing
 
 - (void)setAlgorithm:(AlgorithmType)algorithmType {
-    [self.algorithms removeAllObjects];
-    self.algorithms[@(algorithmType)] = @(1);
+    [self.algorithmTrusts removeAllObjects];
+    self.algorithmTrusts[@(algorithmType)] = @(1);
     [self createAlgorithmsIfNeeded];
 }
 
+- (void)setAlgorithms:(NSArray<NSNumber *> *)algorithmTypes {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (NSNumber *n in algorithmTypes) {
+        dict[n] = @(1);
+    }
+    [self setAlgorithmsAndTrusts:dict];
+}
 
 - (void)setAlgorithmsAndTrusts:(NSDictionary<NSNumber *, NSNumber *> * _Nonnull)algorithms {
     // 1. Garbage in - garbage out
@@ -57,28 +77,28 @@
              @"Algorithm type must exists in AlgorithmType enum");
     
     // 2. Add algorithms
-    [self.algorithms removeAllObjects];
-    self.algorithms = [NSMutableDictionary dictionaryWithDictionary:algorithms];
+    [self.algorithmTrusts removeAllObjects];
+    self.algorithmTrusts = [NSMutableDictionary dictionaryWithDictionary:algorithms];
     [self createAlgorithmsIfNeeded];
 
     // 3. Set trusts and do normalization
     if ([self isAllValuesAreZero:[algorithms allValues]]) {
         double eachTrust = 1.0 / [algorithms count];
         for (NSNumber *key in [algorithms allKeys]) {
-            self.algorithms[key] = @(eachTrust);
+            self.algorithmTrusts[key] = @(eachTrust);
         }
     }
     else {
-        NSNumber *sum = [[self.algorithms allValues] valueForKeyPath:@"@sum.self"];
+        NSNumber *sum = [[self.algorithmTrusts allValues] valueForKeyPath:@"@sum.self"];
         for (NSNumber *key in [algorithms allKeys]) {
-            self.algorithms[key] = @([self.algorithms[key] doubleValue] / [sum doubleValue]);
+            self.algorithmTrusts[key] = @([self.algorithmTrusts[key] doubleValue] / [sum doubleValue]);
         }
     }
 }
 
 - (void)createAlgorithmsIfNeeded {
     [self.algorithmImplements removeAllObjects];
-    for (NSNumber *algType in [self.algorithms allKeys]) {
+    for (NSNumber *algType in [self.algorithmTrusts allKeys]) {
         switch ([algType intValue]) {
             case AlgorithmTypePowerCenter:
                 [self.algorithmImplements addObject:[[AlgorithmPowerCenter alloc] init]];
@@ -87,6 +107,7 @@
                 [self.algorithmImplements addObject:[[AlgorithmEPTA alloc] init]];
                 break;
             case AlgorithmTypeSphereIntersection:
+                [self.algorithmImplements addObject:[[AlgorithmSphereIntersection alloc] init]];
                 break;
             case AlgorithmTypeCustom:
                 NSAssert(self.customAlgorithm != nil, @"Custom algorithm must be initialized before enabling");
@@ -100,7 +121,7 @@
 
 - (CGPoint)calculateUserPosition {
     NSMutableArray *results = [[NSMutableArray alloc] init];
-    NSArray<NSNumber *> *trusts = [self.algorithms allValues];
+    NSArray<NSNumber *> *trusts = [self.algorithmTrusts allValues];
     for (id<TrilaterationAlgorithm> algorithm in self.algorithmImplements) {
         NSArray<Beacon *> *beacons = self.floor.beacons;
         [results addObject:[NSValue valueWithCGPoint:[algorithm locationWithBeacons:beacons]]];
