@@ -25,6 +25,7 @@
 		C2609CEC1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m in Sources */ = {isa = PBXBuildFile; fileRef = C2609CEB1C5E2CD7001C6935 /* CustomTrilaterationImplementor.m */; };
 		C27212D01C56239500ED9A07 /* AlgorithmSphereIntersection.m in Sources */ = {isa = PBXBuildFile; fileRef = C27212CF1C56239500ED9A07 /* AlgorithmSphereIntersection.m */; };
 		C27213051C56608700ED9A07 /* FloorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C27213041C56608700ED9A07 /* FloorTests.m */; };
+		C292CE291C67539E007D8C95 /* CalculationUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = C292CE271C67539E007D8C95 /* CalculationUtils.c */; };
 		C2C4B4691C53BB26003BD094 /* Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C4B4681C53BB26003BD094 /* Processor.m */; };
 		C2C4B46C1C53C701003BD094 /* AlgorithmPowerCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C4B46B1C53C701003BD094 /* AlgorithmPowerCenter.m */; };
 		C2C4B46F1C53CF4C003BD094 /* AlgorithmEPTA.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C4B46E1C53CF4C003BD094 /* AlgorithmEPTA.m */; };
@@ -74,6 +75,8 @@
 		C27213021C56608700ED9A07 /* IBeaconLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IBeaconLocationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C27213041C56608700ED9A07 /* FloorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloorTests.m; sourceTree = "<group>"; };
 		C27213061C56608800ED9A07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C292CE271C67539E007D8C95 /* CalculationUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CalculationUtils.c; sourceTree = "<group>"; };
+		C292CE281C67539E007D8C95 /* CalculationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationUtils.h; sourceTree = "<group>"; };
 		C2C4B4671C53BB26003BD094 /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
 		C2C4B4681C53BB26003BD094 /* Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Processor.m; sourceTree = "<group>"; };
 		C2C4B46A1C53C701003BD094 /* AlgorithmPowerCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmPowerCenter.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				C22EDFCC1C57AF14006AB6E7 /* PowerCenter.h */,
 				C22EDFCE1C57AF24006AB6E7 /* SphereIntersection.c */,
 				C22EDFCF1C57AF24006AB6E7 /* SphereIntersection.h */,
+				C292CE271C67539E007D8C95 /* CalculationUtils.c */,
+				C292CE281C67539E007D8C95 /* CalculationUtils.h */,
 			);
 			name = Implementations;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				C22EDFCA1C57AF08006AB6E7 /* Epta.c in Sources */,
 				C254C4441C539A26004466FC /* BeaconLocation.m in Sources */,
 				C254C42E1C5399A8004466FC /* ViewController.m in Sources */,
+				C292CE291C67539E007D8C95 /* CalculationUtils.c in Sources */,
 				C22EDFD01C57AF24006AB6E7 /* SphereIntersection.c in Sources */,
 				C254C42B1C5399A8004466FC /* AppDelegate.m in Sources */,
 				C254C44A1C53AAED004466FC /* Beacon.m in Sources */,
