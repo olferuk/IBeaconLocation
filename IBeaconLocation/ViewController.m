@@ -36,8 +36,4 @@
     [self.lib.floor addBeaconWithMajor:0 minor:2 xCoord:0 yCoord:0 zCoord:0];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 @end
