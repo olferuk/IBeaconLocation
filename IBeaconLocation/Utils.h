@@ -15,4 +15,6 @@
 
 + (double)realDistanceFromBeaconRssi:(NSInteger)rssi defaultRssi:(NSInteger)defaultRssi;
 
++ (NSString *)randomString;
+
 @end

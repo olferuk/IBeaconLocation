@@ -28,20 +28,6 @@ struct point {
 };
 
 /**
- *  Eucledian distance between two points
- *
- *  @param x1 x1
- *  @param y1 y1
- *  @param x2 x2
- *  @param y2 y2
- *
- *  @return Distance
- */
-double getDistance(double x1, double y1, double x2, double y2) {
-    return sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-}
-
-/**
  *  Checks whether the point belongs to all three circles
  *
  *  @param x      x
@@ -130,7 +116,7 @@ Points getCircleCircleIntersection(Points pointA, Points pointB, int *cnt) {
  *
  *  @param points Beacons
  *  @param size   Size of the array
- *  @param cnt    Reference to the size of the resuting array
+ *  @param cnt    Reference to the size of the resulting array
  *
  *  @return Array of points
  */
@@ -145,7 +131,7 @@ Points getIntersectionPoints(Points points, size_t size, int *cnt) {
             Points intersects = getCircleCircleIntersection(&points[i], &points[j], &cnt);
             if (cnt > 0) {
                 for (size_t k = 0; k < cnt; ++k) {
-                    result[indexToAdd++] = intersects[k]; // todo: what if we adding a duplicate?
+                    result[indexToAdd++] = intersects[k]; 
                 }
             }
         }

@@ -27,6 +27,7 @@
         _floor = [[Floor alloc] init];
         _processor = [[Processor alloc] init];
         _processor.floor = _floor;
+        _attractor = [[Attractor alloc] init];
         
         _region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:identifier];
         _manager = [[CLLocationManager alloc] init];

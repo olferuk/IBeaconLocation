@@ -14,4 +14,6 @@
 #define MIN_BEACONS 3
 #define DIMENSIONS  2
 
+double getDistance(double x1, double y1, double x2, double y2);
+
 #endif /* CalculationUtils_h */

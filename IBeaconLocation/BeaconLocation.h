@@ -10,6 +10,7 @@
 
 #import "Floor.h"
 #import "Beacon.h"
+#import "Attractor.h"
 
 @import CoreLocation;
 
@@ -42,5 +43,6 @@ static const float Eps = 1e-5;
 
 @property (nonatomic, strong) Floor *floor;
 @property (nonatomic, strong) Processor *processor;
+@property (nonatomic, strong) Attractor *attractor;
 
 @end

@@ -11,6 +11,8 @@
 @implementation Utils
 
 static const int size = 3;
+static const int randomStringSize = 10;
+static const int alphabetSize = 25;
 
 + (double)realDistanceFromBeaconRssi:(NSInteger)rssi defaultRssi:(NSInteger)defaultRssi {
     if (rssi == 0) {
@@ -32,6 +34,14 @@ static const int size = 3;
         result[i] = [[b valueForKeyPath:keyPath] doubleValue];
     }
     return result;
+}
+
++ (NSString *)randomString {
+    NSMutableString* string = [NSMutableString stringWithCapacity:randomStringSize];
+    for (int i = 0; i < randomStringSize; ++i) {
+        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(alphabetSize))];
+    }
+    return string;
 }
 
 
