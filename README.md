@@ -10,6 +10,7 @@ This is a project containing both library files and an example to demostrate its
   * [Floor](#floor)
   * [Beacon](#beacon)
   * [Processor](#processor)
+  * [Attractor and Spots](#attractor-and-spots)
   * [Algorithms](#algorithms)
 * [Error handling](#error-handling)
 * [Example](#example)
@@ -26,6 +27,8 @@ Library contains following classes:
     |  Beacon
     |  Utils
     |  Processor
+    |  Attractor
+    |  Spot
     / Algorithms
       / Wrappers
         |  AlgorithmPowerCenter
@@ -132,6 +135,47 @@ self.lib = [[BeaconLocation alloc] initWith...];
 > **Note**: if all trusts were assigned to zero, it will be treated as even values.
 
 The **third** one allows you to pick several methods at once; all of them will be used with equal trusts.
+
+### Attractor and Spots
+
+To make your application more location-responsive, the library contains `Spot` and `Attractor` classes.
+The `Spot` is an object that represents a 'hot spot', an exactly place where you expect users to be more often than in others. It can be museum exhibits, stocks in markets, gates in airports, and so on.
+Managing a `Spot` is pretty straightforward. You can create it as anonymous or give the spot a name.
+
+```objc
+@property (nonatomic, strong) NSString *name;
+
+@property (nonatomic, assign) CGFloat x;
+@property (nonatomic, assign) CGFloat y;
+
+- (instancetype)initWithX:(CGFloat)x y:(CGFloat)y;
+- (instancetype)initWithPoint:(CGPoint)point;
+- (instancetype)initWithX:(CGFloat)x y:(CGFloat)y name:(NSString *)name;
+- (instancetype)initWithPoint:(CGPoint)point name:(NSString *)name;
+```
+
+You can work with spots defined in your app through the `Attractor` interface given below:
+
+```objc
+@property (strong, nonatomic) NSMutableArray<Spot *> *spots;
+
+- (void)addSpot:(Spot *)spot;
+- (void)removeAllSpots;
+- (void)removeLastSpot;
+- (void)removeSpotNamed:(NSString *)name;
+- (void)removeAllSpotsNamed:(NSString *)name;
+
+//--------------------------------------------------
+
+@property (nonatomic, assign) CGFloat attractionPower;  // 0.1 by default
+@property (nonatomic, assign) CGFloat deadZone;         // in meters; 0.2 by default
+
+- (CGPoint)updateUserPosition:(CGPoint)userPosition;
+```
+
+Next, after user's position is calculated by `Processor`, it can be attracted to the nearest spot with some power defined with `attractionPower` property. After the attraction is done, it is supposed that user will be provided with the location-based notification sooner, which make the application more responsive and user friendly.
+
+The `deadZone` property is the minimum distance between the user and the spot. The attraction power will not affect location of user if he is already stands close enough to the `Spot` object.  
 
 ### Algorithms
 
