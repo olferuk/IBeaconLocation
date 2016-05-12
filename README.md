@@ -1,7 +1,6 @@
 # IBeaconLocation
 
 This is a project containing both library files and an example to demostrate its usage.
-> P.s. Библиотечка будет оформлена как фреймворк позже, а Example project пустой пока :(
 
 ## Table of contents
 
